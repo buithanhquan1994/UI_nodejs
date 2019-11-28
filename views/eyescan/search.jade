@@ -1,0 +1,65 @@
+extends layout
+
+block eyescanJS
+  script(src='/javascripts/jquery.amsify.suggestags.js')
+  script(src='/javascripts/eyescanJS.js')
+  
+block contentEyescan
+  div.row.justify-content-between
+    // left-box
+    div.col-md-3.col-sm-5
+      div.card.h-100.border.rounded.shadown
+        div.card-body
+          // Search box
+          div.card-block.align-middle-center.align-center.row.justify-content-center.border-bottom.row
+            form.col-md-12.col-sm-12(method='post',action='/eyescan/search')
+              div.input-group.mb-2
+                input.form-control.amsify-suggestags-input(type='text',placeholder='Keyword',aria-describedby='basic-addon2',name="keywordInput")
+                div.input-group-append
+                  button.btn.btn-outline-primary(type='submit')
+                    i.fa.fa-search
+          
+          // Result Search
+          if keywordObj
+            div.text-left.card-block.align-middle-center.justify-content-center.align-center.row.border-bottom.row
+              div.col-sm-12.col-md-12
+                p.card-text.card-block.font-weight-bold Keyword: 
+                  each val,key in keywordObj
+                    span.badge.badge-pill.badge-primary.mr-1 #{val}
+                
+
+    // right-box
+    div.col-md-9.col-sm-7.h-100
+      div.card.border.rounded.h-100
+        div.card-header
+          p.card-title.font-weight-bold
+            |LIST IMAGE
+        div.card-body.h-auto
+          
+          // Loop object key to button 
+          if objectKey
+            div.card-block.align-middle-center.align-middle.mb-2.filter-button-group
+              button.btn.btn-outline-secondary.mr-1.button-type(data-filter="*")  Show All
+            
+              each val,index in objectKey
+                button.btn.btn-outline-secondary.mr-1.button-type(data-filter=".#{val}") #{val}
+          
+          // show all
+          
+      
+      
+        div.card-block
+          div.grid.align-middle-center.align-center
+            if listIMG
+             each objItem,key in listIMG 
+              each item in objItem  
+                div.grid-item(class='#{key}')
+                  a(href='/eyescan/detail/1')
+                    img.img-thumbnail.img-item-grid(src='#{item.url}')
+            
+                
+          
+              
+    
+        
+             
