@@ -22,6 +22,6 @@
   "devDependencies": {
     "curl": "^0.1.4",
     "jquery": "^3.4.1",
-    "jsdom": "^15.2.1"
+    "jsdom": "^16.5.0"
   }
 }
